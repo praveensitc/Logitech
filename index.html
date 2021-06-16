@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Employee Search</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery-3.5.1.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/jquery-ui.css">
+
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css"></style>
+  <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/dataTables.buttons.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  
+ 
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js"></script>
+  <script src="js/knockout-3.5.1.js"></script>
+  <script src="js/knockout.validation.js"></script>  
+  
+  <script src="js/validation.js"></script>
+   
+</head>
+<body>
+
+<div class="container">
+  
+  <div class="container">
+    <div class="heading">Employee Search List Screen</div>
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-6 col-md-6 col-xs-6">
+                      <div class="col-sm-4"><label for="employeeNo">Employee No#</label></div>
+                      <div class="col-sm-8"><input type="text" class="form-control" id="employeeNo" placeholder="Employee No"></div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-6">
+                      <div class="col-sm-4"><label for="employeeName">Employee Name</label></div>
+                      <div class="col-sm-8"><input type="text" class="form-control" id="employeeName" placeholder="Employee Name"></div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6 col-md-6 col-xs-6">
+                      <div class="col-sm-4"><label for="gender">Gender</label></div>
+                      <div class="col-sm-8">
+                        <select class="form-control" id="gender">
+                          <option value="">--Select Gender--</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-6">
+                      <div class="col-sm-12"><button type="button" class="btn btn-primary">Search</button></div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+  </div> 
+
+  <div class="container table-responsive">  
+    <div class="countRows">Employee List ( <span class="countRowsData"></span> Items )</div>  
+    <table id="myTable" class="display table" width="100%" >
+    
+      <thead>  
+        <tr>  
+          <th>Employee</th>  
+          <th>Contact</th>  
+          <th>Level & Post</th>  
+          <th>Action</th>  
+        </tr>  
+      </thead>  
+      <tbody>  
+        <tr>  
+          <td>
+            <div class="profile"><img src="profile.JPG" alt="Avatar" class="avatar"></div>
+            <div class="profile">
+              <p class="empName">Foo Bar</p>
+              <p class="empID">#23479</p>
+              </div>
+          
+          </td>  
+          <td>
+            <p></p>XX-XXXX-XXXX</p>
+            <p>xxx.yyy@fujitsu.co.in</p>
+          </td>
+          <td>
+            <p>10/</p>
+            <p>PM Bilingual</p>
+          </td>  
+          <td>
+            <button class="btn btn-info">Employments</button> 
+            <button class="btn btn-primary">Edit</button> 
+            <button class="btn btn-danger">Delete</button>
+          </td>  
+        </tr>  
+        <tr>  
+          <td>
+            <div class="profile"><img src="profile.JPG" alt="Avatar" class="avatar"></div>
+            <div class="profile">
+              <p class="empName">Foo Bar</p>
+              <p class="empID">#23479</p>
+              </div>
+          
+          </td>  
+          <td>
+            <p></p>XX-XXXX-XXXX</p>
+            <p>xxx.yyy@fujitsu.co.in</p>
+          </td>
+          <td>
+            <p>10/</p>
+            <p>PM Bilingual</p>
+          </td>  
+          <td>
+            <button class="btn btn-info">Employments</button> 
+            <button class="btn btn-primary">Edit</button> 
+            <button class="btn btn-danger">Delete</button>
+          </td>  
+        </tr>  
+        <tr>  
+          <td>
+            <div class="profile"><img src="profile.JPG" alt="Avatar" class="avatar"></div>
+            <div class="profile">
+              <p class="empName">Foo Bar</p>
+              <p class="empID">#23479</p>
+              </div>
+          
+          </td>  
+          <td>
+            <p></p>XX-XXXX-XXXX</p>
+            <p>xxx.yyy@fujitsu.co.in</p>
+          </td>
+          <td>
+            <p>10/</p>
+            <p>PM Bilingual</p>
+          </td>  
+          <td>
+            <button class="btn btn-info">Employments</button> 
+            <button class="btn btn-primary">Edit</button> 
+            <button class="btn btn-danger">Delete</button>
+          </td>  
+        </tr>  
+        
+      </tbody>  
+    </table>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form id="employeeForm" data-bind="submit : handleSubmit">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add/Update Employee Record</h5>
+        <button type="button" class="close" data-bind="click: handleCancel" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+          <!-- Error Panel -->
+          <div class="row">    
+
+           <!-- <div class="panel panel-danger" data-bind="visible: !hasSubmitted()">
+              <div class="panel-heading">Form has invalid input data, please correct the errors and submit again!!</div>              
+            </div> -->
+            
+            <div class="panel" data-bind="css: styleClass">
+              <div class="panel-heading" data-bind="text: Message"></div>              
+            </div>
+
+          </div>
+        
+          <div class="row">            
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="col-sm-4"><label for="employeeNo">Employee No# <span class="red">*</span></label></div>
+                  <div class="col-sm-8"><input type="text" class="form-control" data-bind="value: employeeNo" id="employeeNo" name="employeeNo" placeholder="Employee No"></div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">  
+            <div class="form-group">
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="firstname">First Name <span class="red">*</span></label></div>
+                <div class="col-sm-8"><input type="text"  data-bind="value: firstname" class="form-control" id="firstname" placeholder="First Name"></div>              
+            </div>
+
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="lastname">Last Name <span class="red">*</span></label></div>
+                <div class="col-sm-8"><input type="text" data-bind="value: lastname" class="form-control" id="lastname" placeholder="Last Name"></div>              
+            </div>
+            </div>
+          </div>
+
+          <div class="row">  
+            <div class="form-group">
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="dob">Date of Birth <span class="red">*</span></label></div>
+                <div class="col-sm-8"><input type="text" data-bind="value: dob" class="form-control datepicker" id="dob" placeholder="DD/MM/YYYY"></div>              
+            </div>
+
+            <div class="col-sm-6">
+              <div class="col-sm-4"><label for="gender">Gender <span class="red">*</span></label></div>
+              <div class="col-sm-8">
+                <select class="form-control" data-bind="value: gender" id="gender">
+                  <option value="">-- Select Gender --</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Not Defined">Not Defined</option>
+                </select>
+              </div>
+            </div> 
+            </div>
+          </div>
+
+          <div class="row">  
+            <div class="form-group">
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="mobile">Mobile Num <span class="red">*</span></label></div>
+                <div class="col-sm-8"><input type="text" class="form-control" data-bind="NumberOnly, value: mobile" id="mobile" placeholder="1234567890"></div>              
+            </div>
+
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="email">Email (Personal) <span class="red">*</span></label></div>
+                <div class="col-sm-8"><input type="text" class="form-control" data-bind="value: email" id="email" placeholder="Email ID"></div>
+            </div>
+            </div>
+          </div>
+
+          <div class="row">  
+            <div class="form-group">
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="doj">Joining Date <span class="red">*</span></label></div>
+                <div class="col-sm-8"><input type="text" class="form-control datepicker"  data-bind="value: doj" id="doj" placeholder="DD/MM/YYYY"></div>              
+            </div>
+
+            <div class="col-sm-6">
+              <div class="col-sm-4"><label for="gradeLevel">Employee Level <span class="red">*</span></label></div>
+              <div class="col-sm-8">
+                <select class="form-control"  data-bind="value: level" id="gradeLevel">
+                  <option value=""> --Select Level-- </option>
+                  <option value="1">G1</option>
+                  <option value="2">G2</option>
+                  <option value="3">G3</option>
+                  <option value="4">G4</option>
+                  <option value="5">G5</option>
+                  <option value="6">G6</option>
+                  <option value="7">G7</option>
+                  <option value="8">G8</option>
+                  <option value="9">G9</option>
+                  <option value="10">G10</option>
+                  <option value="11">G11</option>
+                  <option value="12">G12</option>
+                  <option value="13">G13</option>
+                  <option value="14">G14</option>
+                  <option value="15">G15</option>
+                </select>
+              </div>
+            </div> 
+            </div>
+          </div>
+
+          <div class="row">  
+            <div class="form-group">
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="postName">Post <span class="red">*</span></label></div>
+                <div class="col-sm-8"><input type="text" class="form-control" data-bind="value: postName" id="postName" placeholder="Senior Engineer"></div>              
+            </div>
+
+            <div class="col-sm-6">
+              <div class="col-sm-4"><label for="bloodGroup">Blood Group</label></div>
+              <div class="col-sm-8">
+                <select class="form-control" data-bind="value: bloodGroup" id="bloodGroup">
+                  <option value="">-- Select Blood Group --</option>
+                  <option value="A">A</option>
+                  <option value="A+">A+</option>
+                </select>
+              </div>
+            </div> 
+            </div>
+          </div>
+
+          <div class="row">  
+            <div class="form-group">
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="basicPay">Basic Pay <span class="red">*</span></label></div>
+                <div class="col-sm-8"><input type="text" class="form-control" data-bind="value: basicPay" id="basicPay" placeholder="Basic Pay"></div>              
+            </div>
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="houseAllowance">House Allowance <span class="red">*</span></label></div>
+                <div class="col-sm-8"><input type="text" class="form-control" data-bind="value: houseAllowance" id="houseAllowance" placeholder="House Allowance"></div>              
+            </div>
+            </div>
+          </div>
+
+          <div class="row">  
+            <div class="form-group">
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="panCardNo">PAN Card No</label></div>
+                <div class="col-sm-8"><input type="text" class="form-control" data-bind="value: panCardNo" id="panCardNo" placeholder="BPXXXXXXXX"></div>              
+            </div>
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="aadharCardNo">Aadhar Card No</label></div>
+                <div class="col-sm-8"><input type="text" class="form-control" data-bind="value: aadharCardNo" id="aadharCardNo" placeholder="1XXXXXXXXX9090"></div>              
+            </div>
+            </div>
+          </div>
+
+          <div class="row">  
+            <div class="form-group">
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="permanentAddress">Permanent Address</label></div>
+                <div class="col-sm-8"><textarea class="form-control" data-bind="value: permanentAddress" id="permanentAddress" ></textarea></div>              
+            </div>
+            <div class="col-sm-6">              
+                <div class="col-sm-4"><label for="presentAddress">Permanent Address</label></div>
+                <div class="col-sm-8"><textarea class="form-control"  data-bind="value: presentAddress" id="presentAddress"></textarea></div>              
+            </div>
+
+          </div>          
+        </div>
+      
+      </div>
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" id="addEmployee" value="Submit" />
+        <button type="button" class="btn btn-secondary" data-bind="click: handleCancel" data-dismiss="modal">Cancel</button>        
+      </div>    
+    </div>
+  </form>
+  </div>
+</div>
+</body>
+</html>

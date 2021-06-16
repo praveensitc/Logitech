@@ -1,0 +1,91 @@
+.heading {
+	margin: 30px 0 30px 0;
+	background-color: #e6e3e3;
+	font-size: 18px;
+	font-weight: BOLD;
+	padding: 10px 10px;
+}
+.csvButton {
+	float: right;
+	margin: 10px;
+}
+.addEmployeeButton {
+	margin: 10px;
+}
+#myTable thead tr th {
+	background-color: #e6e3e3;
+	text-align: center;
+}
+.dataTable thead, .dataTable tbody {
+	text-align: center !important;
+}
+.avatar {
+  vertical-align: middle;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.profile {
+	float: left;
+	padding: 10px;
+}
+.profile .empName {
+	font-weight: bold;
+}
+.profile .empID {
+  color: red;
+  font-weight: bold;
+}
+.countRows {
+	font-weight: bold;
+}
+span.countRowsData {
+	color: red;
+}
+#exampleModal .modal-dialog {
+	width: 80%;
+}
+#exampleModal .form-control {
+	margin: 5px;
+}
+
+#exampleModal label {
+	margin-top: 15px;
+}
+
+#exampleModal .modal-title {
+	font-size: 20px;
+	font-weight: bold; 
+}
+#exampleModal .modal-header {
+	padding: 15px 0px 0px 15px;
+	border-bottom: 1px solid #e6e3e3;
+	background-color: #e6e3e3;
+}
+#exampleModal .close {        
+	font-size: 30px;        
+	margin: 0px 30px;
+}
+#exampleModal .modal-footer {
+	text-align: center;
+}
+span.red {
+	font-size: 18px;
+	color: red;
+}
+.validationMessage {
+    color: red;
+    padding: 10px;
+}
+.panel {
+    font-size: 18px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 800px) {
+	button.btn.btn-primary.searchBtn {
+	  margin: 20px;
+	}
+  }
+
+  
